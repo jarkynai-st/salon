@@ -15,11 +15,14 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.SET_NULL,null=True,related_name='profile')
 
 
-class Profile_master(models.Model):
+class ProfileMaster(models.Model):
     image = models.ImageField(blank=True,null=True)
     full_name = models.CharField(max_length=50)
     age = models.CharField(max_length=20)
-    gender = models.CharField(max_length=20)
+    gender = models.CharField(choices=(
+        ('woman', 'woman'),
+        ('men', 'men'),
+    ), max_length=20)
 
 
 class Certification(models.Model):

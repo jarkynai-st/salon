@@ -6,9 +6,26 @@ from .serializer import *
 
 
 class ProfileView(views.APIView):
+
+    def post(self, request, *args, **kwargs):
+        serializer = ProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"data": "OK"})
+        return Response(serializer.errors)
+
+
     def get(self,request,*args,**kwargs):
         profile = Profile.objects.all()
         serializer = ProfileSerializer(profile,many=True)
+        return Response(serializer.data)
+
+
+class ProfileMasterView(views.APIView):
+
+    def get(self, request, *args, **kwargs):
+        profile_master = ProfileMaster.objects.all()
+        serializer = ProfileMasterSerializer(profile_master,many=True)
         return Response(serializer.data)
 
 
@@ -56,6 +73,13 @@ class OrderAPIView(views.APIView):
                     "date_created": "2021-04-07T17:49:28.748633+06:00",
                     "user": 1,
                         })
+
+    def post(self, request, *args, **kwargs):
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"data": "OK"})
+        return Response(serializer.errors)
 
 
 class RegisterView(views.APIView):

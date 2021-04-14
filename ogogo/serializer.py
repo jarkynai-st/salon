@@ -1,5 +1,3 @@
-import profile
-
 from django.db.migrations import serializer
 from rest_framework import serializers
 from rest_framework.response import Response
@@ -23,7 +21,11 @@ class CertificationSerializer(serializers.ModelSerializer):
         fields = ['id','course_name','date','photo']
 
 
+class ProfileMasterSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = ProfileMaster
+        fields = ['id','image','full_name','age','gender']
 
 
 class DaySerializer(serializers.ModelSerializer):

@@ -10,5 +10,5 @@ urlpatterns = [
     path('service_time/',ServiceTimeView.as_view()),
     path('service/',ServiceView.as_view()),
     path('order/',OrderAPIView.as_view()),
-
+    path('profile_master/',ProfileMasterView.as_view()),
 ]
